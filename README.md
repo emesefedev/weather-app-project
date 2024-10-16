@@ -9,3 +9,9 @@
 🎯[Assignment](https://www.theodinproject.com/lessons/node-path-javascript-weather-app)
 
 🌦️[Result](emesefedev.github.io/weather-app-project)
+
+# Weather Data
+
+[Visual Crossing](https://www.visualcrossing.com/)
+
+[Documentation](https://www.visualcrossing.com/resources/documentation/weather-api/timeline-weather-api/)
