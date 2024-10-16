@@ -13,4 +13,4 @@
 
 # Project Start
 
-- `npm init`
+- `npm install`
