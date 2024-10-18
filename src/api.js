@@ -16,7 +16,7 @@ export function getSunset(data) {
   return data.sunset;
 }
 
-function getMoonPhase(data) {
+export function getMoonPhase(data) {
   const percentage = data.moonphase;
   if (percentage === 0) return "New Moon";
   if (percentage < 0.25) return "Waxing Crescent";
