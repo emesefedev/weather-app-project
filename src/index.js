@@ -1,5 +1,10 @@
 import "./style.css";
-import { displayMoonphase, displaySunriseAndSunset } from "./ui";
+import {
+  displayDescription,
+  displayFullTemperature,
+  displayMoonphase,
+  displaySunriseAndSunset,
+} from "./ui";
 
 const inca = "39.72196,2.91347";
 const mancor = "39.75021,2.87229";
@@ -12,7 +17,13 @@ const sunriseSunsetContainer = () =>
   document.getElementById("sunrise-sunset-container");
 const moonPhaseContainer = () =>
   document.getElementById("moon-phase-container");
+const descriptionContainer = () =>
+  document.getElementById("description-container");
+const temperatureContainer = () =>
+  document.getElementById("temperature-container");
 
 const requestedData = await fetchWeatherTodayData(sierraNevada);
 displaySunriseAndSunset(requestedData, sunriseSunsetContainer);
 displayMoonphase(requestedData, moonPhaseContainer);
+displayDescription(requestedData, descriptionContainer);
+displayFullTemperature(requestedData, temperatureContainer);

@@ -28,19 +28,19 @@ export function getMoonPhase(data) {
   if (percentage <= 1) return "Waning Crescent";
 }
 
-function getDescription(data) {
+export function getDescription(data) {
   return data.description;
 }
 
-function getMaxTemperature(data) {
+export function getMaxTemperature(data) {
   return data.tempmax;
 }
 
-function getMinTemperature(data) {
+export function getMinTemperature(data) {
   return data.tempmin;
 }
 
-function getTemperature(data) {
+export function getTemperature(data) {
   return data.temp;
 }
 

@@ -62,3 +62,8 @@ p {
 .gap-64 {
     gap: 64px;
 }
+
+.my-32 {
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
