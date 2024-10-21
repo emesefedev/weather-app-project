@@ -4,6 +4,11 @@ import {
   displayFullTemperature,
   displayMoonphase,
   displaySunriseAndSunset,
+  displayFullPrecipitation,
+  displayFullSnow,
+  displayFullWind,
+  displayCloudCover,
+  displayHumidity,
 } from "./ui";
 
 const inca = "39.72196,2.91347";
@@ -21,9 +26,21 @@ const descriptionContainer = () =>
   document.getElementById("description-container");
 const temperatureContainer = () =>
   document.getElementById("temperature-container");
+const precipitationContainer = () =>
+  document.getElementById("precipitation-container");
+const snowContainer = () => document.getElementById("snow-container");
+const windContainer = () => document.getElementById("wind-container");
+const cloudCoverContainer = () =>
+  document.getElementById("cloud-cover-container");
+const humidityContainer = () => document.getElementById("humidity-container");
 
 const requestedData = await fetchWeatherTodayData(sierraNevada);
 displaySunriseAndSunset(requestedData, sunriseSunsetContainer);
 displayMoonphase(requestedData, moonPhaseContainer);
 displayDescription(requestedData, descriptionContainer);
 displayFullTemperature(requestedData, temperatureContainer);
+displayFullPrecipitation(requestedData, precipitationContainer);
+displayFullSnow(requestedData, snowContainer);
+displayFullWind(requestedData, windContainer);
+displayCloudCover(requestedData, cloudCoverContainer);
+displayHumidity(requestedData, humidityContainer);

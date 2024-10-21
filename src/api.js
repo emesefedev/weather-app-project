@@ -33,49 +33,49 @@ export function getDescription(data) {
 }
 
 export function getMaxTemperature(data) {
-  return data.tempmax;
+  return `${data.tempmax}°C`;
 }
 
 export function getMinTemperature(data) {
-  return data.tempmin;
+  return `${data.tempmin}°C`;
 }
 
 export function getTemperature(data) {
-  return data.temp;
+  return `${data.temp}°C`;
 }
 
-function getPrecipitation(data) {
-  return data.precip;
+export function getPrecipitation(data) {
+  return `${data.precip} mm`;
 }
 
-function getPrecipitationProbability(data) {
-  return data.precipprob;
+export function getPrecipitationProbability(data) {
+  return `${data.precipprob}%`;
 }
 
-function getPrecipitationType(data) {
+export function getPrecipitationType(data) {
   return data.preciptype;
 }
 
-function getSnow(data) {
-  return data.snow;
+export function getSnow(data) {
+  return `New Snow: ${data.snow} cm`;
 }
 
-function getSnowDepth(data) {
-  return data.snowdepth;
+export function getSnowDepth(data) {
+  return `Depth: ${data.snowdepth} cm`;
 }
 
-function getWindDirection(data) {
-  return data.winddir;
+export function getWindDirection(data) {
+  return `${data.winddir}°`;
 }
 
-function getWindSpeed(data) {
-  return data.windspeed;
+export function getWindSpeed(data) {
+  return `${data.windspeed} kph`;
 }
 
-function getCloudCover(data) {
-  return data.cloudcover;
+export function getCloudCover(data) {
+  return `${data.cloudcover}%`;
 }
 
-function getHumidity(data) {
-  return data.humidity;
+export function getHumidity(data) {
+  return `${data.humidity}%`;
 }

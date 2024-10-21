@@ -11,6 +11,14 @@ import waningGibbousIcon from "./Icons/waning-gibbous-moon.svg";
 import waxingCrescentIcon from "./Icons/waxing-crescent-moon.svg";
 import waxingGibbousIcon from "./Icons/waxing-gibbous-moon.svg";
 import temperatureIcon from "./Icons/temperature.svg";
+import rainIcon from "./Icons/rain.svg";
+import snowIcon from "./Icons/snow.svg";
+import freezingRainIcon from "./Icons/freezing-rain.svg";
+import iceIcon from "./Icons/ice.svg";
+import cloudCoverIcon from "./Icons/cloud-cover.svg";
+import windDirectionIcon from "./Icons/wind-direction.svg";
+import windSpeedIcon from "./Icons/wind-speed.svg";
+import humidityIcon from "./Icons/humidity.svg";
 
 import {
   getDescription,
@@ -20,6 +28,15 @@ import {
   getMoonPhase,
   getSunrise,
   getSunset,
+  getPrecipitationProbability,
+  getPrecipitationType,
+  getPrecipitation,
+  getSnow,
+  getSnowDepth,
+  getCloudCover,
+  getHumidity,
+  getWindDirection,
+  getWindSpeed,
 } from "./api";
 
 const moonPhaseIcons = {
@@ -33,17 +50,46 @@ const moonPhaseIcons = {
   "Waning Crescent": waningCrescentIcon,
 };
 
+const precipitationTypeIcons = {
+  rain: rainIcon,
+  snow: snowIcon,
+  "freezing rain": freezingRainIcon,
+  ice: iceIcon,
+};
+
 function displayImageAndInfo(data, container, icon, getInfo) {
   const flexContainer = document.createElement("div");
   flexContainer.classList.add("flex");
 
   container().appendChild(flexContainer);
 
+  const info = document.createElement("p");
+  info.textContent = getInfo(data);
+
   const image = document.createElement("img");
   image.src = icon;
 
+  flexContainer.appendChild(image);
+  flexContainer.appendChild(info);
+}
+
+function displayImageFromCollectionAndInfo(
+  data,
+  container,
+  iconCollection,
+  getInfo,
+) {
+  const flexContainer = document.createElement("div");
+  flexContainer.classList.add("flex");
+
+  container().appendChild(flexContainer);
+
   const info = document.createElement("p");
-  info.textContent = getInfo(data);
+  const infoText = getInfo(data);
+  info.textContent = infoText;
+
+  const image = document.createElement("img");
+  image.src = iconCollection[infoText];
 
   flexContainer.appendChild(image);
   flexContainer.appendChild(info);
@@ -59,6 +105,32 @@ function displayInfo(data, container, getInfo) {
   info.textContent = getInfo(data);
 
   flexContainer.appendChild(info);
+}
+
+export function displaySunriseAndSunset(data, container) {
+  displaySunrise(data, container);
+  displaySunset(data, container);
+}
+
+function displaySunrise(data, container) {
+  displayImageAndInfo(data, container, sunriseIcon, getSunrise);
+}
+
+function displaySunset(data, container) {
+  displayImageAndInfo(data, container, sunsetIcon, getSunset);
+}
+
+export function displayMoonphase(data, container) {
+  displayImageFromCollectionAndInfo(
+    data,
+    container,
+    moonPhaseIcons,
+    getMoonPhase,
+  );
+}
+
+export function displayDescription(data, container) {
+  displayInfo(data, container, getDescription);
 }
 
 export function displayFullTemperature(data, container) {
@@ -79,36 +151,59 @@ function displayMaxTemperature(data, container) {
   displayImageAndInfo(data, container, maxTemperatureIcon, getMaxTemperature);
 }
 
-export function displayDescription(data, container) {
-  displayInfo(data, container, getDescription);
+export function displayFullPrecipitation(data, container) {
+  displayPrecipitationProbability(data, container);
+  displayPrecipitationType(data, container);
+  displayPrecipitation(data, container);
 }
 
-export function displayMoonphase(data, container) {
-  const moonPhaseContainer = document.createElement("div");
-  moonPhaseContainer.classList.add("flex");
-
-  container().appendChild(moonPhaseContainer);
-
-  const moonPhase = getMoonPhase(data);
-
-  const moonPhaseImage = document.createElement("img");
-  moonPhaseImage.src = moonPhaseIcons[moonPhase];
-  const moonPhaseInfo = document.createElement("p");
-  moonPhaseInfo.textContent = moonPhase;
-
-  moonPhaseContainer.appendChild(moonPhaseImage);
-  moonPhaseContainer.appendChild(moonPhaseInfo);
+function displayPrecipitationProbability(data, container) {
+  displayInfo(data, container, getPrecipitationProbability);
 }
 
-export function displaySunriseAndSunset(data, container) {
-  displaySunrise(data, container);
-  displaySunset(data, container);
+function displayPrecipitationType(data, container) {
+  displayImageFromCollectionAndInfo(
+    data,
+    container,
+    precipitationTypeIcons,
+    getPrecipitationType,
+  );
 }
 
-function displaySunrise(data, container) {
-  displayImageAndInfo(data, container, sunriseIcon, getSunrise);
+function displayPrecipitation(data, container) {
+  displayInfo(data, container, getPrecipitation);
 }
 
-function displaySunset(data, container) {
-  displayImageAndInfo(data, container, sunsetIcon, getSunset);
+export function displayFullSnow(data, container) {
+  displaySnow(data, container);
+  displaySnowDepth(data, container);
+}
+
+function displaySnow(data, container) {
+  displayInfo(data, container, getSnow);
+}
+
+function displaySnowDepth(data, container) {
+  displayInfo(data, container, getSnowDepth);
+}
+
+export function displayCloudCover(data, container) {
+  displayImageAndInfo(data, container, cloudCoverIcon, getCloudCover);
+}
+
+export function displayFullWind(data, container) {
+  displayWindDirection(data, container);
+  displayWindSpeed(data, container);
+}
+
+function displayWindDirection(data, container) {
+  displayImageAndInfo(data, container, windDirectionIcon, getWindDirection);
+}
+
+function displayWindSpeed(data, container) {
+  displayImageAndInfo(data, container, windSpeedIcon, getWindSpeed);
+}
+
+export function displayHumidity(data, container) {
+  displayImageAndInfo(data, container, humidityIcon, getHumidity);
 }

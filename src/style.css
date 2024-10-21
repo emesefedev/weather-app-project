@@ -32,9 +32,19 @@ p {
     color: var(--primary-color)
 }
 
+.text-color-secondary {
+    color: var(--secondary-color)
+}
+
 .text-bold {
     font-weight: bold;
 }
+
+.text-center {
+    text-align: center;
+}
+
+/* FLEX */
 
 .flex {
     display: flex;
@@ -42,6 +52,12 @@ p {
     
     gap: 8px;
 }
+
+.gap-64 {
+    gap: 64px;
+}
+
+/* GRID */
 
 .weather-info-grid {
     width: 75vw;
@@ -59,11 +75,18 @@ p {
     border-radius: 8px;
 }
 
-.gap-64 {
-    gap: 64px;
+/* PADDING AND MARGIN */
+
+.py-8 {
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
 
 .my-32 {
     margin-top: 32px;
     margin-bottom: 32px;
+}
+
+.mt-64 {
+    margin-top: 64px;
 }
