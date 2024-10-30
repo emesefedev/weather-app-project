@@ -1,3 +1,5 @@
 import "./style.css";
 
-console.log("Hello Weather");
+import { setUpDrowDownButton } from "./dropdown.js";
+
+setUpDrowDownButton();
