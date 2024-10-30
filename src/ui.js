@@ -1,43 +1,45 @@
+import cloudCoverIcon from "./Icons/cloud-cover.svg";
 import firstQuarterIcon from "./Icons/first-quarter-moon.svg";
+import freezingRainIcon from "./Icons/freezing-rain.svg";
 import fullMoonIcon from "./Icons/full-moon.svg";
+import humidityIcon from "./Icons/humidity.svg";
+import iceIcon from "./Icons/ice.svg";
 import lastQuarterIcon from "./Icons/last-quarter-moon.svg";
 import maxTemperatureIcon from "./Icons/max-temperature.svg";
 import minTemperatureIcon from "./Icons/min-temperature.svg";
 import newMoonIcon from "./Icons/new-moon.svg";
+import rainIcon from "./Icons/rain.svg";
+import snowIcon from "./Icons/snow.svg";
 import sunriseIcon from "./Icons/sunrise.svg";
 import sunsetIcon from "./Icons/sunset.svg";
+import temperatureIcon from "./Icons/temperature.svg";
 import waningCrescentIcon from "./Icons/waning-crescent-moon.svg";
 import waningGibbousIcon from "./Icons/waning-gibbous-moon.svg";
 import waxingCrescentIcon from "./Icons/waxing-crescent-moon.svg";
 import waxingGibbousIcon from "./Icons/waxing-gibbous-moon.svg";
-import temperatureIcon from "./Icons/temperature.svg";
-import rainIcon from "./Icons/rain.svg";
-import snowIcon from "./Icons/snow.svg";
-import freezingRainIcon from "./Icons/freezing-rain.svg";
-import iceIcon from "./Icons/ice.svg";
-import cloudCoverIcon from "./Icons/cloud-cover.svg";
 import windDirectionIcon from "./Icons/wind-direction.svg";
 import windSpeedIcon from "./Icons/wind-speed.svg";
-import humidityIcon from "./Icons/humidity.svg";
 
 import {
+  getCloudCover,
   getDescription,
+  getHumidity,
   getMaxTemperature,
   getMinTemperature,
-  getTemperature,
   getMoonPhase,
-  getSunrise,
-  getSunset,
+  getPrecipitation,
   getPrecipitationProbability,
   getPrecipitationType,
-  getPrecipitation,
   getSnow,
   getSnowDepth,
-  getCloudCover,
-  getHumidity,
+  getSunrise,
+  getSunset,
+  getTemperature,
   getWindDirection,
   getWindSpeed,
-} from "./api";
+} from "./api.js";
+
+import { convertToTitleCase } from "./utilities.js";
 
 const moonPhaseIcons = {
   "New Moon": newMoonIcon,
@@ -56,6 +58,45 @@ const precipitationTypeIcons = {
   "freezing rain": freezingRainIcon,
   ice: iceIcon,
 };
+
+const locationTitle = () => document.getElementById("location-title");
+
+const sunriseSunsetContainer = () =>
+  document.getElementById("sunrise-sunset-container");
+const moonPhaseContainer = () =>
+  document.getElementById("moon-phase-container");
+const descriptionContainer = () =>
+  document.getElementById("description-container");
+const temperatureContainer = () =>
+  document.getElementById("temperature-container");
+const precipitationContainer = () =>
+  document.getElementById("precipitation-container");
+const snowContainer = () => document.getElementById("snow-container");
+const windContainer = () => document.getElementById("wind-container");
+const cloudCoverContainer = () =>
+  document.getElementById("cloud-cover-container");
+const humidityContainer = () => document.getElementById("humidity-container");
+
+export function updateDisplayedInfo(location, data) {
+  displayLocation(location);
+  displayFullWeatherInfo(data);
+}
+
+function displayLocation(location) {
+  locationTitle().textContent = convertToTitleCase(location);
+}
+
+function displayFullWeatherInfo(data) {
+  displaySunriseAndSunset(data, sunriseSunsetContainer);
+  displayMoonphase(data, moonPhaseContainer);
+  displayDescription(data, descriptionContainer);
+  displayFullTemperature(data, temperatureContainer);
+  displayFullPrecipitation(data, precipitationContainer);
+  displayFullSnow(data, snowContainer);
+  displayFullWind(data, windContainer);
+  displayCloudCover(data, cloudCoverContainer);
+  displayHumidity(data, humidityContainer);
+}
 
 function displayImageAndInfo(data, container, icon, getInfo) {
   const flexContainer = document.createElement("div");
@@ -107,7 +148,8 @@ function displayInfo(data, container, getInfo) {
   flexContainer.appendChild(info);
 }
 
-export function displaySunriseAndSunset(data, container) {
+function displaySunriseAndSunset(data, container) {
+  clear(container);
   displaySunrise(data, container);
   displaySunset(data, container);
 }
@@ -120,7 +162,8 @@ function displaySunset(data, container) {
   displayImageAndInfo(data, container, sunsetIcon, getSunset);
 }
 
-export function displayMoonphase(data, container) {
+function displayMoonphase(data, container) {
+  clear(container);
   displayImageFromCollectionAndInfo(
     data,
     container,
@@ -129,11 +172,13 @@ export function displayMoonphase(data, container) {
   );
 }
 
-export function displayDescription(data, container) {
+function displayDescription(data, container) {
+  clear(container);
   displayInfo(data, container, getDescription);
 }
 
-export function displayFullTemperature(data, container) {
+function displayFullTemperature(data, container) {
+  clear(container);
   displayMinTemperature(data, container);
   displayTemperature(data, container);
   displayMaxTemperature(data, container);
@@ -151,7 +196,8 @@ function displayMaxTemperature(data, container) {
   displayImageAndInfo(data, container, maxTemperatureIcon, getMaxTemperature);
 }
 
-export function displayFullPrecipitation(data, container) {
+function displayFullPrecipitation(data, container) {
+  clear(container);
   displayPrecipitationProbability(data, container);
   displayPrecipitationType(data, container);
   displayPrecipitation(data, container);
@@ -174,7 +220,8 @@ function displayPrecipitation(data, container) {
   displayInfo(data, container, getPrecipitation);
 }
 
-export function displayFullSnow(data, container) {
+function displayFullSnow(data, container) {
+  clear(container);
   displaySnow(data, container);
   displaySnowDepth(data, container);
 }
@@ -187,11 +234,13 @@ function displaySnowDepth(data, container) {
   displayInfo(data, container, getSnowDepth);
 }
 
-export function displayCloudCover(data, container) {
+function displayCloudCover(data, container) {
+  clear(container);
   displayImageAndInfo(data, container, cloudCoverIcon, getCloudCover);
 }
 
-export function displayFullWind(data, container) {
+function displayFullWind(data, container) {
+  clear(container);
   displayWindDirection(data, container);
   displayWindSpeed(data, container);
 }
@@ -204,6 +253,11 @@ function displayWindSpeed(data, container) {
   displayImageAndInfo(data, container, windSpeedIcon, getWindSpeed);
 }
 
-export function displayHumidity(data, container) {
+function displayHumidity(data, container) {
+  clear(container);
   displayImageAndInfo(data, container, humidityIcon, getHumidity);
+}
+
+function clear(container) {
+  container().textContent = "";
 }

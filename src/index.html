@@ -5,9 +5,21 @@
         <meta charset="utf-8">
     </head>
     <body>
-        <h1 class="text-color-blue">Weather App</h1>
+        <div class="flex">
+            <h1 class="text-color-blue">Weather App - <span id="location-title">Sierra Nevada</span></h1>
 
-        <h2 class="text-color-secondary text-center">Sun & Moon</h2>
+            <div id="dropdown">
+                <button id="dropdown-button">Choose a location...</button>
+                <div id="dropdown-options" class="dropdown-options hidden">
+                    <p class="dropdown-option">Inca</p>
+                    <p class="dropdown-option">Mancor</p>
+                    <p class="dropdown-option">Palma</p>
+                    <p class="dropdown-option">Sierra Nevada</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="text-color-secondary text-center mt-64">Sun & Moon</h2>
         <div class="weather-info-grid">
             <div class="text-color-primary text-bold py-8">Sunrise and Sunset</div>
             <div id="sunrise-sunset-container" class="text-color-primary flex gap-64 py-8"></div>
