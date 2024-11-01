@@ -69,7 +69,6 @@ p {
     display: grid;
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: 25% 75%;
-    overflow: auto;
     gap: 8px;
     
     background-color: var(--blue-transparent-color);
