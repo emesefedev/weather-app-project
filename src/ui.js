@@ -19,6 +19,7 @@ import waxingCrescentIcon from "./Icons/waxing-crescent-moon.svg";
 import waxingGibbousIcon from "./Icons/waxing-gibbous-moon.svg";
 import windDirectionIcon from "./Icons/wind-direction.svg";
 import windSpeedIcon from "./Icons/wind-speed.svg";
+import noPrecipitation from "./Icons/no-precipitation.svg";
 
 import {
   getCloudCover,
@@ -57,6 +58,7 @@ const precipitationTypeIcons = {
   snow: snowIcon,
   "freezing rain": freezingRainIcon,
   ice: iceIcon,
+  null: noPrecipitation,
 };
 
 const locationTitle = () => document.getElementById("location-title");
