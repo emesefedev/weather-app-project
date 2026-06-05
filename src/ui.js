@@ -129,7 +129,10 @@ function displayImageFromCollectionAndInfo(
 
   const info = document.createElement("p");
   const infoText = getInfo(data);
-  info.textContent = infoText;
+  info.textContent =
+    !infoText && getInfo === getPrecipitationType
+      ? "No precipitation"
+      : infoText;
 
   const image = document.createElement("img");
   image.src = iconCollection[infoText];
