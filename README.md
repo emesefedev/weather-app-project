@@ -8,7 +8,7 @@
 ````
 🎯[Assignment](https://www.theodinproject.com/lessons/node-path-javascript-weather-app)
 
-🌦️[Result](emesefedev.github.io/weather-app-project)
+🌦️[Result](https://emesefedev.github.io/weather-app-project/)
 
 # Weather Data
 
