@@ -15,3 +15,7 @@
 [Visual Crossing](https://www.visualcrossing.com/)
 
 [Documentation](https://www.visualcrossing.com/resources/documentation/weather-api/timeline-weather-api/)
+
+# Weather SVG
+
+[SVG Repo - Collection "Variety Flat Bordered Icons"](https://www.svgrepo.com/collection/variety-flat-bordered-icons)
